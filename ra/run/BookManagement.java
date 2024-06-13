@@ -1,5 +1,4 @@
-
-
+//BookManagement
 package ra.run;
 
 import java.util.InputMismatchException;
@@ -23,42 +22,37 @@ public class BookManagement {
             System.out.println("6. Thay đổi thông tin sách theo mã sách");
             System.out.println("7. Thoát");
             System.out.print("Chọn: ");
-            try {
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // consume newline
-
-                switch (choice) {
-                    case 1:
-                        addBooks(scanner);
-                        break;
-                    case 2:
-                        displayBooks();
-                        break;
-                    case 3:
-                        sortBooksByInterest();
-                        displayBooks();
-                        break;
-                    case 4:
-                        deleteBookById(scanner);
-                        displayBooks();
-
-                        break;
-                    case 5:
-                        searchBooks(scanner);
-                        break;
-                    case 6:
-                        updateBookById(scanner);
-                        break;
-                    case 7:
-                        System.out.println("Thoát chương trình");
-                        return;
-                    default:
-                        System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Vui lòng chọn một số trong menu");
-                scanner.nextLine();
-            }
+            String choiceInput = scanner.nextLine();
+            if (choiceInput.matches("\\d+")) { 
+            int choice = Integer.parseInt(choiceInput);
+            switch (choice) {
+                case 1:
+                    addBooks(scanner);
+                    break;
+                case 2:
+                    displayBooks();
+                    break;
+                case 3:
+                    sortBooksByInterest();
+                    break;
+                case 4:
+                    deleteBookById(scanner);
+                    break;
+                case 5:
+                    searchBooks(scanner);
+                    break;
+                case 6:
+                    updateBookById(scanner);
+                    break;
+                case 7:
+                    System.out.println("Thoát chương trình");
+                    return;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+    }
+    } else {
+            System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn lại.");
+}
         }
     }
 
@@ -86,7 +80,7 @@ public class BookManagement {
 
         for (int i = 0; i < bookCount; i++) {
             bookList[i].displayData();
-            System.out.println("----------------------------");
+            System.out.println("--------------------");
         }
     }
 
@@ -142,7 +136,7 @@ public class BookManagement {
             }
         }
     }
-
+//case 6
     private static void updateBookById(Scanner scanner) {
         System.out.print("Nhập mã sách cần cập nhật: ");
         int id = scanner.nextInt();
